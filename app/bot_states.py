@@ -6,7 +6,8 @@ redis = Redis(host='localhost')
 redis_storage = RedisStorage(redis=redis)
 
 # Cоздаем класс, наследуемый от StatesGroup, для группы состояний нашей FSM
-class IN_GAME(StatesGroup):
+class FSM_IN_GAME(StatesGroup):
     after_start = State()
     in_game = State()        # Состояние в игре
+
 

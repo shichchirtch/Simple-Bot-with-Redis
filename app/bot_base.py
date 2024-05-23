@@ -1,9 +1,9 @@
 from sqlalchemy import Integer, BigInteger, String, ARRAY
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-# from config import settings
+from config import settings
 
-engine = create_async_engine('sqlite+aiosqlite:///bot_base.db',#settings.DATABASE_URL,
+engine = create_async_engine(settings.DATABASE_URL,
                              echo=True)
 
 session_marker = async_sessionmaker(engine, expire_on_commit=False)
@@ -21,12 +21,7 @@ class User(Base):
     user_name: Mapped[str] = mapped_column(String(200), nullable=False)
     secret_number: Mapped[str] = mapped_column(Integer, default=0)
     attempts: Mapped[int] = mapped_column(Integer, default=5, nullable=True)
-    # steps: Mapped[list[int]] = mapped_column(ARRAY(Integer), default=[], nullable=True)
-    step_1: Mapped[int] = mapped_column(Integer, default=0)
-    step_2: Mapped[int] = mapped_column(Integer, default=0)
-    step_3: Mapped[int] = mapped_column(Integer, default=0)
-    step_4: Mapped[int] = mapped_column(Integer, default=0)
-    step_5: Mapped[int] = mapped_column(Integer, default=0)
+    steps: Mapped[list[int]] = mapped_column(ARRAY(Integer), default=[], nullable=True)
 
 
 async def init_models():

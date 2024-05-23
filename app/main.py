@@ -6,6 +6,7 @@ from bot_base import init_models
 from aiogram.enums import ParseMode
 from bot_states import redis_storage
 from bot_tocken import BOT_TOKEN
+# from config import settings
 
 # Функция конфигурирования и запуска бота
 async def main():
